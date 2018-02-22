@@ -8,7 +8,6 @@
  * 
  * --- Тесты: ---
  * UT_Boot  - проверка инициализации Boot() -чтения Suppliers и SuppliersInit
- !  заткнута проверка равенства количества поставщиков в SuppliersInit.xml и Suppliers.xml
  * UT_getHpath - тест protected getHpath() - читает Hpath из Propetries
  */
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -29,8 +28,8 @@ namespace PriceMatch.Tests
             Assert.IsTrue(boot.fo.IsDirExist(boot.ExcelDir));
             Assert.IsTrue(boot.Suppliers.AllSuppliers.Count > 0);
             Assert.IsTrue(boot.ssInit.Count > 0);
-            //    Assert.AreEqual(boot.Suppliers.AllSuppliers.Count, boot.ssInit.Count,
-            //        "Не все Поставщики отображаются в SupplierInit.xml");
+            Assert.AreEqual(boot.Suppliers.AllSuppliers.Count, boot.ssInit.Count,
+                "Не все Поставщики отображаются в SupplierInit.xml");
         }
 
         [TestMethod()]

@@ -56,17 +56,20 @@ namespace PriceMatch.Tests
         [TestMethod()]
         public void UT_Update()
         {
-            ps.Update("СтальХолдинг");
+
+  //          ps.Update("СтальХолдинг");
 
 
 
             string suplName = "СтальХолдинг";
-            string psName = "Лист Стальхолдинг";
+            string psName = "Лист";
             var AllSuppliers = boot.Suppliers.AllSuppliers;
             Supplier supl = AllSuppliers.Find(x => x.name == suplName);
-            ps = supl.productSets.Find(x => x.name == psName);
+            ps = supl.productSets.Find(x => x.name.Contains(psName));
+            var supl_I = boot.ssInit.Find(x => x.name == suplName);
+            var psi = supl_I.pssInit.Find(x => x.name.Contains(psName));
 
-            ps.Update();
+            ps.Update(psi);
 
             Assert.AreEqual(ps.name, psName);
             Assert.AreEqual(ps.SuplName, suplName);

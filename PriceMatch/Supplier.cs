@@ -1,5 +1,5 @@
 ﻿/* -------------------------------------------------------------------
- * Supplier - class support Goods suppliers 19.02.2018 Pavel Khrapkin
+ * Supplier - class support Goods suppliers 22.02.2018 Pavel Khrapkin
  * 
  * --- History: ---
  * 2015-2017 development in TSmatch
@@ -162,33 +162,10 @@ namespace PriceMatch
 
         public SupplierInit() { }
         public SupplierInit(Boot boot) { this.boot = boot; }
-        public void Copy(Supplier supl)
+        public SupplierInit Copy(Supplier supl)
         {
             name = supl.name;
-            URL = supl.URL;
-            Country = supl.Country;
-            Index = supl.Index;
-            Tel = supl.Tel;
-            city = supl.city;
-            streetAdr = supl.streetAdr;
-            Note = supl.Note;
-            var si = boot.ssInit;
-            foreach (var ps in supl.productSets)
-            {
-                //               var psInit = new psInit();
-
-                //                psInit.Copy(ps);
-                //               pssInit.Add(psInit);
-            }
-            // public string name { get; set; }
-            // public string URL { get; set; }
-            // public string Country { get; set; }
-            // public string Index { get; set; }
-            // public string Tel { get; set; }
-            // public string city { get; set; }
-            // public string streetAdr { get; set; }
-            // public string Note { get; set; }
-            // public List<ProductSet> productSets = new List<ProductSet>();
+            return this;  
         }
     } // end SupplierInit class
 } // end namwspace 

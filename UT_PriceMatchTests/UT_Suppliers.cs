@@ -62,8 +62,12 @@ namespace PriceMatch.Tests
         [TestMethod()]
         public void UT_WrXML()
         {
+            ss.AllSuppliers.Clear();
+            boot.ssInit.Clear();
+
+            #region --- Иногородние поставщика без прайс-листов ---
             ssInit("Росметаллопрокат", "http://www.rosmetalloprokat.ru/",
-                "Екатеринбург", "ул. Кирова, д. 28 (территория завода \"ВИЗ\")");
+             "Екатеринбург", "ул. Кирова, д. 28 (территория завода \"ВИЗ\")");
             ssInit("ООО \"Металлопромышленное Предприятие\"", "http://yaruse.com/",
                 "Екатеринбург", "пр-кт. Космонавтов, д. 18", index: "620017");
             ssInit("Уралтрубосталь", "http://www.uraltrubostal.com/index.php?page=price",
@@ -86,6 +90,7 @@ namespace PriceMatch.Tests
                 "Омск", "проезд Овощной, дом 7");
             ssInit("Оммет", "http://www.ommet.com",
                 "Омск", "ул. 22 Партсъезда, 105", index: "644105");
+            #endregion --- Иногородние поставщика без прайс-листов ---
 
             #region --- База СЕВЗАПМЕТАЛЛ
             ssInit("База СЕВЗАПМЕТАЛЛ", " http://szmetal.ru/",
@@ -179,9 +184,16 @@ namespace PriceMatch.Tests
             string streetAdr, string country = "", string index = "",
             string tel = "", string note = "")
         {
+            bool newSupl = false, newSupl_I = false;
+            var AllSupl = boot.Suppliers.AllSuppliers;
+            supl = AllSupl.Find(x => x.name == name);
+            if(supl == null)
+            {
+                newSupl = true;
+                supl = new Supplier(boot);
+            }
             supl = new Supplier(boot);
-            ssi = new SupplierInit(boot);
-            supl.name = ssi.name = name;
+            supl.name = name;
             supl.URL = url;
             supl.city = city;
             supl.Country = country;
@@ -189,7 +201,17 @@ namespace PriceMatch.Tests
             supl.Tel = tel;
             supl.Note = note;
             supl.productSets = new List<ProductSet>();
-            ssi.pssInit = new List<psInit>();
+            if (newSupl) AllSupl.Add(supl);
+
+            var supl_I = boot.ssInit.Find(x => x.name == name);
+            if(supl_I == null)
+            {
+                newSupl_I = true;
+                supl_I = new SupplierInit(boot);
+                supl_I.name = name;
+            }
+            supl_I.pssInit = new List<psInit>();
+            if (newSupl_I) boot.ssInit.Add(supl_I);
         }
 
         private void PSU(string name, string FileName,

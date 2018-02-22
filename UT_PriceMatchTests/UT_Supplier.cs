@@ -1,13 +1,15 @@
 ﻿using PriceMatch;
 /* --------------------------------------------------------
-* UT_Supplier 17.02.2018 Pavel Khrapkin
+* UT_Supplier 22.02.2018 Pavel Khrapkin
 * 
 * --- History: ---
 * 17.02.18 audit, UT_Init add
+* 22.02.18 UT_SupplierIni/UT_Copy
 * --- тесты: ---
 * UT_Init       - тест инициализации - проверяем, что Supplier.boot != null
 ! UT_WrXMLfrExcel - 
 * UT_Fill       - простой тест - вызов заполнения полей Supplier.Fields
+* UT_Copy       -
 * UT_Update     - обновление поставщика для SupplierInit.xml
 */
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -72,7 +74,15 @@ namespace PriceMatch.Tests
             Assert.AreEqual("bb", x.name);
         }
 
+        [TestMethod()]
+        public void UT_Copy()
+        {
+            supl = boot.ssInit[2];  
+            Assert.AreEqual("", supl.name);
+            var supl_I = new SupplierInit(boot);
 
+            var v = supl_I.Copy(supl);
+        }
     }
 
     class _UT_Supplier : Supplier

@@ -1,7 +1,7 @@
 ﻿/* -----------------------------------------------------------------
  * ProductSet - Set of Products, with their Rules, and PriceList
  * 
- * 20.02.2018 Pavel Khrapkin
+ * 22.02.2018 Pavel Khrapkin
  * 
  * --- History --------
  * 2018.01.09   - exclude Rules, use List<string>RuleText & SectionTab instead
@@ -15,7 +15,7 @@
  * 2018.02.13   - class psInit
  * 2018.02.16   - transfer to PriceMatch
  * 2018.02.18   - add FileName and SheetN fields to psInit, chech IfExist..()
- * 2018.02.19   - SuplName field, Update() methods
+ * 2018.02.22   - SuplName field, Update() methods
  * 
  * UT_ProductSet: UT_Boot, UT_Update, UTsetFields, 
  *                UT_Init_CShars, UT_Init_XML, UT_Init_Excel
