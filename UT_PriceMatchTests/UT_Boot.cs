@@ -8,6 +8,7 @@
  * 
  * --- Тесты: ---
  * UT_Boot  - проверка инициализации Boot() -чтения Suppliers и SuppliersInit
+ !  заткнута проверка равенства количества поставщиков в SuppliersInit.xml и Suppliers.xml
  * UT_getHpath - тест protected getHpath() - читает Hpath из Propetries
  */
 using Microsoft.VisualStudio.TestTools.UnitTesting;
